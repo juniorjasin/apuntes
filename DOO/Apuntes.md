@@ -42,3 +42,25 @@ public Class Singleton extends JFrame { // indica que uso el constructor por def
 ```
 
 #### Factory
+
+
+# apuntes clase 19/04/17
+
+UML:
+    * D.Clases
+    * D.Objetos
+    * D. Paquetes
+    * D. Componentes
+    * D. 
+
+Obejtos: P. Obj
+
+Patrones de diseño: 
+  * creacion
+
+
+
+
+
+
+
