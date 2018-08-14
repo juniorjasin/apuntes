@@ -158,3 +158,4 @@ Algunas caracteristicas deseables son:
 
 Ejercicios:
 Identificar bad smells en clases.
+Y decir que refactoring le aplicariamos.
