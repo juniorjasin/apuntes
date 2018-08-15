@@ -1,0 +1,30 @@
+REFACTORIZACIONES
+
+Clase Run
+Bad Smell: Cambio divergente
+Ante la posibilidad de realizar futuros cambios sobre las clases internas, sería preferible extraer las mismas.
+Refactorizaciones: Mover a un nuevo archivo
+Se mueve la clase “Estrella” a un nuevo archivo.
+Se mueve la clase “EstrellaPanel” a un nuevo archivo.
+
+
+Clase Estrellas
+Bad Smell: Intimidad inadecuada
+La clase Run tiene declaradas sus variables de instancia con el modificador de acceso por defecto de Java lo que permite a la clase Estrella hacer uso de las mismas sin utilizar un método accesor.
+Refactorizaciones: Encapsular campo
+En la clase Run se cambia el modificador de acceso de las variables puntosX y puntosY a privado, se programan los métodos accesores.
+Se modifica la clase Estrella haciendo uso de los métodos accesores correspondientes.
+
+Bad Smell: Envidia de características
+En este bloque de inicialización muestra el uso de las variables de instancia definidas en la clase Run que podrían considerarse características propias y necesarias de la clase estrella.
+Refactorizaciones: Mover campo y método
+Se pasan las variables de instancia puntosX y puntosY a la clase Estrella desde la clase Run junto con sus correspondientes métodos accesores.
+
+
+Clase EstrellaPanel
+Bad Smell: Intimidad inadecuada
+La clase Estrella tiene declarada la variable de instancia estrella con el modificador de acceso por defecto de Java lo que permite a la clase EstrellaPanel hacer uso de la misma sin utilizar un método accesor.
+Refactorizaciones: Encapsular campo
+En la clase Estrella se cambia el modificador de acceso de la variable estrella a privado, se programa el método accesor.
+Se modifica la clase EstrellaPanel haciendo uso del método accesor.
+

@@ -133,8 +133,8 @@ Algunas caracteristicas deseables son:
 
 * Atributos temporales. ej: clases con atributos que no forman parte de la entidad.
 * Cadenas de mensajes. Objetos que invocan a otro asi sucesivamente.
-* Cambio divergente. ej: cuando se generan cambios constantemente a clases
-* Cambios de cadena. Cuando se cambia algo en una clase, entonces luego hay que modificar muchas cosas
+* Cambio divergente. ej: cuando se generan cambios constantemente a clases.
+* Cambios de cadena. Cuando se cambia algo en una clase, entonces luego hay que modificar muchas cosas.
 * Clases de datos. Clases que tienen atributos y metodos accesoras nada mas.
 * Clases grandes.
 * Clase perezosa. Clase que no aporta demasiado, debe ser eliminada.
