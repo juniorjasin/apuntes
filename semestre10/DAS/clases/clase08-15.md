@@ -24,15 +24,18 @@ Solucion --> Mover campos, pasamos las variables a la clase Estrella (a la que d
 1) 
 Bad Smell: cambio divergente 
 Justificacion: Se tiene la clase Punto dentro de Run, lo cual induce a que a que se 
-cambie esta clase con frecuencia.
+               cambie esta clase con frecuencia.
 Solucion: Extract class (sacar las clases inner que tiene) a un nuevo archivo.
 
 2)
 Bad Smell: Intimidad inadecuada
-Justificacion: Los atributos de la clase Punto son publicos.
+Justificacion: Porque los atributos de la clase Punto son publicos.
 Solucion: Encapsular campo (hacer los atributos privados y crear metodos accesores)
 
-3) envidia de caracteristicas, agregar color a la clase Punto.
+3) 
+Bad Smell: envidia de caracteristicas
+Justificacion: 
+Solucion: agregar color a la clase Punto.
 
 4) grupo de datos, porque las clases que dibujan reciben varios parametros iguales
 solucion : reemplazar la variable local por variable de clase y mandar solo puntos.
