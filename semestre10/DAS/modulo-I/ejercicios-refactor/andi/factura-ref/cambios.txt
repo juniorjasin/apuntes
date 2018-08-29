@@ -1,0 +1,22 @@
+1) Inappropiate intimacy (intimidad inadecuada)
+
+* La clase ENTRADA tiene sus atributos publicos, por lo que se puede acceder a ellos directamente.
+
+  Vamos a declararlos privados y definir sus metodos accesores.  
+
+2) Primitive obsession (obsesión primitiva)
+
+se utilizan variables tipo string para manipular los datos de un cliente. Esto hace que lo metodos reciban muchos parametros
+innecesariamente dificultando la comprension del codigo.
+
+Porcedemos a crear un objeto tipo CLIENTE
+
+
+3) Long method (método largo)
+
+* el metodo 'mostrarFactura' es demasiado largo, se necesitan comentarios para comprender su funcionamiento.
+
+vamos a crear metodos para separar la logica del mismo.
+
+4) Switch statements (estructura de agrupación condicional)
+

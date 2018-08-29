@@ -9,6 +9,8 @@ public abstract class Forma {
     public abstract void setAltura(double a);
     public abstract double getBase();
     public abstract double getAltura();
+    
+    // forma solo deberia tener estos dos metodos
     public abstract double getPerimetro();
     public abstract double getArea();
 
@@ -18,7 +20,7 @@ public abstract class Forma {
         
         if(this.getClass() == Triangulo.class) {
             Triangulo t = Triangulo.class.cast(this);            
-            s.append("Triángulo\n");
+            s.append("Triï¿½ngulo\n");
             s.append("Lados: ");
             s.append(t.getLado1());
             s.append(", ");
@@ -38,7 +40,7 @@ public abstract class Forma {
             s.append("\n");
         }
         else if(this.getClass() == Rectangulo.class) {
-            s.append("Rectángulo\n");
+            s.append("Rectï¿½ngulo\n");
             s.append("Base: ");
             s.append(this.getBase());            
             s.append("\n");
@@ -47,11 +49,11 @@ public abstract class Forma {
             s.append("\n");
         }
         
-        s.append("Perímetro: ");
+        s.append("Perï¿½metro: ");
         s.append(this.getPerimetro());
         s.append("\n");
         
-        s.append("Área: ");
+        s.append("ï¿½rea: ");
         s.append(this.getArea());
         s.append("\n");
         

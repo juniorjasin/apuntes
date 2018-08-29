@@ -1,0 +1,11 @@
+depto es clase grande o cambio divergente
+
+------------------------------------------
+falta entidad "empresa", que deberia ser un singleton, para asegurar que el
+legajo es UNICO EN TODOS LOS DEPTOS (esto era un requerimiento que la profe nos tenia que pasar, pero no lo paso juas).
+Por eso hacemos la clase empresa, para cumplir este requerimiento, que el legajo sea unico por cada empleado.
+
+se le tiene que pasar el legajo al constructor de la clase empleado
+
+depto tiene que tener el dato de a que depto pertenece
+

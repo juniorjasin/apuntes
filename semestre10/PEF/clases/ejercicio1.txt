@@ -1,0 +1,73 @@
+
+
+Se tiene un bloque de cálculo que genera resultados a una tasa de 333MHz. 
+Se lo reemplazó por un bloque pipeline que tiene una demora de obtención del primer resultado de 20x10^-9 seg.
+Ambos bloques generan el décimo (10) resultado a los 30x10^-9 seg.
+
+1) Se debe determinar la demora del bloque más lento del pipeline y 
+   la cantidad mínima de bloques que lo conforman.
+
+2) Se debe calcular el tiempo que tardarán ambos bloques para procesar 16x10^9 datos.
+
+Datos: 
+
+Perf-c = 333MHz = 0.333 GHz
+Tp = 20x10^-9 seg
+Decimo resultado a los 30x10^-9 seg
+
+*********************************************
+1) Averiguar tc y cantidad de bloques minimo
+
+Averiguar tc:
+
+Primero bloque pipeline termina a los 20ns.
+
+Como Tc = 1 / perf-c 
+     Tc = 1 / 0.333 GHz
+     Tc = 3ns
+
+El primer bloque resultado se obtiene con un retado igual a 6 y como se genera el decimo resultado
+a los 30ns.
+
+Tc = (10 + 6) * tc
+30ns / 16 = tc
+1.875ns = tc 
+
+1.875ns es la demora del pipeline mas lento
+
+----------------------------------------
+
+cantidad minima de bloques:
+
+N = Tp / tp
+N = 20ns / 1.875ns
+N = 10.6666667 ≈ 11 
+
+11 es la minimca cantidad de bloques.
+
+*********************************************
+
+2) Calcular Tp y Tc para 16x10^9 datos.
+
+Perf-c = 333MHz = 0.333 GHz
+Perf-c = 1 / Tc 
+Tc = 1/Perf-c 
+Tc = 1/0.333
+Tc = 3 ns
+
+para 16x10^9 datos
+
+bloque monolitico:
+
+Tc = 16x10^9 × 3ns
+Tc = 48 ns
+
+Para el bloque monolitico se tardara 48 segundos.
+
+
+bloque pipeline:
+
+Tp = (16x10^9 + 6) × 1.875ns
+Tp = 30 ns
+
+Para el caso del pipeline se tardara 30ns.

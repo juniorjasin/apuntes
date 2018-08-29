@@ -1,0 +1,30 @@
+PALABRAS_PARRAFO: ([A-Za-z ] | ' ' [.,!?])+  ('\n\n')
+
+
+exp               5-6+3 DER
+exp' term         5-6+3 MATCH
+exp'               -6+3 DER
+exp' term ops      -6+3 MATCH
+exp' term           6+3 MATCH
+exp'                 +3 DER
+exp' term ops        +3 MATCH
+exp' term             3 MATCH
+exp'                    DER
+e                       OK
+
+
+
+
+$                          5-6+3 DES
+$ 5                        -6+3  RED
+$ term                     -6+3  DES
+$ term -                    6+3  RED
+$ term ops                  6+3  DES
+$ term ops 6                 +3  RED
+$ term ops term              +3  DES
+$ term ops term ops           3  DES
+$ term ops term ops term e       RED
+$ term ops term ops term exp'    RED
+$ term ops term exp'             RED
+$ term exp'                      RED
+$ exp                            OK
