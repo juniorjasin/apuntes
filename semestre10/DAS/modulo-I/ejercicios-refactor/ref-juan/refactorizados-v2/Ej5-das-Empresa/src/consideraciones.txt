@@ -1,0 +1,3 @@
+-	El identificador del empleado es único.
+-	Podría requerirse considerar más cargos de los contemplados al momento.
+-	Un empleado solo puede formar parte de un único departamento y cumplir un único cargo.

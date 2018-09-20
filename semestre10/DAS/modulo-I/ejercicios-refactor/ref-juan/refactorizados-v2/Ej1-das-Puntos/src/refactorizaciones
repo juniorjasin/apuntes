@@ -1,0 +1,17 @@
+Divergent change: La clase Run tiene como inner class a Punto, por lo cuál por ejemplo
+si quiero agregar estrellas además de puntos u otros elementos se harán diversos cambios
+que no están muy relacionados con la clase Run.
+Refactorización: Separar las clases
+
+Inappropiate intimacy: La clase run trata con la parte privada de Punto accediendo
+directamente a sus atributos.
+Ref: Cambiar los atributos x,y a private, agregar el método getter y setter de cada uno, 
+y hacer que en la clase Run se utilice tal método.
+
+Feature envy: El método getColor no corresponde a la clase Run, corresponde a Punto 
+devolver de que color es. Sólo hace uso de los métodos de Punto a lo largo del método. 
+Ref: Mover el método a la clase Punto, quitar el parámetro punto e utilizar getX() y getY()
+de la propia instancia, cambiar en la clase Run la llamada de getColor().
+
+Data clumps: Los métodos drawPunto y drawLinea reciben innecesariamente como parámetro Color.
+Ref: Quitar el parámetro Color y obtener el color del punto, arreglar la llamada al método.

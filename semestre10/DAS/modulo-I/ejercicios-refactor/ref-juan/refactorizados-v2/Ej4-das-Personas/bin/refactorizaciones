@@ -1,0 +1,16 @@
+Refused bequest: La clase Alumno usa pocas características de la clase Docente, la jerarquía
+de clases está mal planteada.
+Ref: Cambiar la herencia de la clase Alumno a la clase Persona. Agregar un constructor a Alumno
+con todos los atributos. 
+
+Temporary field: La clase Persona define los atributos de clase nroLegAlumno y nroLegDocente
+que sólo se usan en el constructor y no la representan como clase.
+Ref: Mover nroLegAlumno y nroLegDocente a las clases hijas Alumno y Docente respectivamente.
+Quitar nroLegAlumno y nroLegDocente del constructor de Persona y cambiar los constructores
+de Alumno y Docente para que lo seteen.
+
+Temporary field: En la clase TipoDocumento aparece nroDocumento que no representa a la clase
+TipoDocumento.
+Ref: Mover el atributo de clase nroDocumento a la clase Persona. Agregar getter y setter para
+el atributo.
+

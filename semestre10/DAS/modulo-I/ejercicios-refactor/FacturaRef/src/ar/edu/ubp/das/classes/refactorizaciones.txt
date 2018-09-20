@@ -1,0 +1,17 @@
+REFACTORIZACIONES
+
+
+Clase Tarifa
+Bad smell: Estructura de agrupacion condicional
+Motivacion: Segun el tipo string que se pasa por parametro, la clase se comporta de forma diferente (aplicando distintos descuentos)
+Refactorizaciones:	Por cada valor de tipo, crear una subclase
+					Hacer abstracta la superclase
+					Hacer abstractos los metodos que le daban diferente comportamiento ( getDescuento() y getCosto() )
+					Sacar de la superclase el atributo de tipo 
+
+------------------------------------------------------------------------------------------------
+
+Clase 
+Bad smell: 
+Motivacion: 
+Refactorizaciones:	

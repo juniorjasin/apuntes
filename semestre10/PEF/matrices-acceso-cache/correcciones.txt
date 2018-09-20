@@ -1,0 +1,106 @@
+
+Suma row major:
+
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./p1 10 10
+
+real	0m0.002s
+user	0m0.001s
+sys	0m0.002s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./p1 50 50
+
+real	0m0.002s
+user	0m0.002s
+sys	0m0.000s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./p1 100 100
+
+real	0m0.003s
+user	0m0.003s
+sys	0m0.000s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./p1 500 500
+
+real	0m0.023s
+user	0m0.019s
+sys	0m0.004s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./p1 1000 1000
+
+real	0m0.034s
+user	0m0.026s
+sys	0m0.007s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./p1 2000 2000
+
+real	0m0.118s
+user	0m0.098s
+sys	0m0.020s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./p1 3000 3000
+
+real	0m0.236s
+user	0m0.180s
+sys	0m0.056s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./p1 4000 4000
+
+real	0m0.409s
+user	0m0.329s
+sys	0m0.080s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./p1 5000 5000
+
+real	0m0.617s
+user	0m0.485s
+sys	0m0.133s
+
+
+-------------------------------------------------------------------------------------------
+
+
+Suma col major :
+
+pmal 10 10
+
+real	0m0.002s
+user	0m0.000s
+sys	0m0.002s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./pmal 50 50
+
+real	0m0.002s
+user	0m0.000s
+sys	0m0.002s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./pmal 100 1000
+
+real	0m0.078s
+user	0m0.074s
+sys	0m0.005s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./pmal 100 100
+
+real	0m0.003s
+user	0m0.000s
+sys	0m0.003s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./pmal 500 500
+
+real	0m0.017s
+user	0m0.007s
+sys	0m0.011s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./pmal 1000 1000
+
+real	0m0.079s
+user	0m0.070s
+sys	0m0.008s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./pmal 2000 2000
+
+real	0m0.321s
+user	0m0.297s
+sys	0m0.024s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./pmal 3000 3000
+
+real	0m0.748s
+user	0m0.699s
+sys	0m0.049s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./pmal 4000 4000
+
+real	0m1.388s
+user	0m1.300s
+sys	0m0.088s
+jrjs@jrjs-N501VW:~/Desktop/apuntes/semestre10/PEF/matrices-acceso-cache$ time ./pmal 5000 5000
+
+real	0m2.257s
+user	0m2.141s
+sys	0m0.116s
+

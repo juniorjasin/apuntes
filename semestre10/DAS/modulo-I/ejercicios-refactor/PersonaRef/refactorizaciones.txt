@@ -1,0 +1,49 @@
+
+
+Clase Alumno
+
+Bad smell: legado rechazado
+
+Motivacion: La clase alumno no utiliza nada de lo que hereda de la clase Docente,
+			solo utiliza un atributo de la clase Persona
+			
+Refactorizaciones: 	Elimino la herencia 
+					Hago que Alumno herede de Persona
+					
+					
+-----------------------------------------------------------------------------------------------
+
+Clase Persona
+
+Bad smell: legado rechazado
+
+Motivacion: La clase alumno hereda nroLegAlumno y nroLegDocente, y solo utiliza nroLegAlumno
+			pasa lo mismo con nroLegDocente, hereda nroLegAlumno pero no lo utiliza
+			
+Refactorizacion: 	- Elimino atributos de la clase Persona
+					- Paso los atributos a las clases que los utilizan. 
+					  nroLegAlumno a la clase Alumno y nroLegDocente a la clase Docente
+					   
+					
+-----------------------------------------------------------------------------------------------
+
+Clase TipoDocumente 
+
+Bad smell: Temporary field
+
+Motivacion: En la clase TipoDocumento tengo el nroDocumento, que es un atributo de la persona 
+
+Refactorizacion: 	- Saco el atributo, con sus getters y setters
+					- Agrego atributo en la clase persona
+					
+					
+-----------------------------------------------------------------------------------------------
+					
+Clase Persona 
+
+Bad smell: Generalidad especulativa
+
+Motivacion: El atributo nroLegPersonal esta agregado en el constructor de Persona, pero jamas es utilizado ni setead 
+
+Refactorizacion: 	- Elimino el atributo
+					

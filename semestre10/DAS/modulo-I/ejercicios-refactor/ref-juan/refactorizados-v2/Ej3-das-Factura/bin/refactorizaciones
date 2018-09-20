@@ -1,0 +1,23 @@
+Switch statements: La clase tarifa utiliza una sentencia switch en el método getDescuento
+que obliga a que crezca cada vez que agregamos una nueva tarifa.
+Ref: Aplicar polimorfismo. Dejar Tarifa como la superclase, que representará a la Tarifa Normal, y crear dos clases
+TarifaNinios y TarifaJubilados que heredan de Tarifa. Cambiar el método getDescuento en la clase
+Tarifa para que devuelva el descuento de una tarifa normal, y redefinir el mismo en TarifaNinios
+y TarifaJubilados. Cambiar el modo de acceso del atributo costo en Tarifa de public a private.
+El método getTipo() retorna hardcodeado el tipo de la misma en String.
+
+Temporary field: El atributo tipo de tarifa se deja de utilizar luego de aplicar polimorfismo.
+Ref: Quitar el atributo. Cambiar los constructores de cada una de las clases tanto padre 
+como hijas.
+
+Data clumps: En la clase factura, el método addTarifa recibe de argumentos las propiedades
+de una tarifa.
+Ref: Recibir un objeto Tarifa.
+
+Inappropiate intimacy: La clase Factura accede directamente a los atributos de la clase Entrada,
+por ejemplo en el método mostrarFactura().
+Ref: Hacer los atributos de Entrada privados, y agregar getters y setters. Cambiar el acceso
+a los atributos de Entrada por getters y setters en la clase Factura.
+
+También podría agregarse que el método mostrarFactura() sería long method y refactorizarlo
+diviendolo en partes.

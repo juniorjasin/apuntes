@@ -1,0 +1,135 @@
+        -:    0:Source:SumaMatricesAleatorias-old.c
+        -:    0:Graph:SumaMatricesAleatorias-old.gcno
+        -:    0:Data:SumaMatricesAleatorias-old.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include <stdlib.h>
+        -:    3:#include <time.h>
+        -:    4:
+        -:    5:double** CrearMatriz   (int rows, int cols);
+        -:    6:void     BorrarMatriz  (double **m, int rows);
+        -:    7:void     CargarMatriz  (double **m, int rows, int cols);
+        -:    8:void     MostrarMatriz (double **m, int rows, int cols, FILE *out);
+        -:    9:
+        -:   10:double   GenerarDato();
+        -:   11:void     SumarElementos (double **m, double **n, int rows, int cols);
+        -:   12:
+        1:   13:int main (int argc, char *argv[]) {
+        1:   14:  int error=0, matrixRows=0, matrixCols=0, maxIters=0;
+        1:   15:  double **matrizOriginal=NULL, **matrizAuxiliar=NULL, maxDiferencia=0.0;
+        -:   16:
+        -:   17:  /* Verificacion de la cantidad de argumentos */
+        1:   18:  if (argc<2) {
+    #####:   19:    fprintf(stderr,"Utilizar:\n\t%s filas columnas\n",argv[0]);
+    #####:   20:    error=1;
+        -:   21:  }
+        -:   22:  else {
+        -:   23:    /* Se toma la cantidad de elementos de la matriz (cuadrada) */
+        1:   24:    matrixRows=atoi(argv[1]);
+        1:   25:    matrixCols= argc==3 ? atoi(argv[2]) : matrixRows;
+        -:   26:    /* Se reserva la memoria para la matriz principal */
+        1:   27:    matrizOriginal=CrearMatriz(matrixRows,matrixCols);
+        1:   28:    if (matrizOriginal==NULL) {
+    #####:   29:      error=1;
+        -:   30:    }
+        -:   31:  }
+        1:   32:  if (!error) {
+        -:   33:    /* Se reserva la memoria para la matriz auxiliar */
+        1:   34:    matrizAuxiliar=CrearMatriz(matrixRows,matrixCols);
+        1:   35:    if (matrizAuxiliar==NULL) {
+    #####:   36:      error=1;
+        -:   37:    }
+        -:   38:  }
+        -:   39:
+        1:   40:  if (!error) {
+        -:   41:    /* Se inicializan ambas matrices con los mismos valores */
+        1:   42:    CargarMatriz(matrizOriginal,matrixRows,matrixCols);
+        1:   43:    CargarMatriz(matrizAuxiliar,matrixRows,matrixCols);
+        -:   44:
+        1:   45:    SumarElementos(matrizOriginal,matrizAuxiliar,matrixRows,matrixCols);
+        -:   46:  }
+        -:   47:
+        -:   48:  /* Se libera la memoria reservada para ambas matrices */
+        1:   49:  BorrarMatriz(matrizOriginal,matrixRows);
+        1:   50:  BorrarMatriz(matrizAuxiliar,matrixRows);
+        -:   51:
+        1:   52:  return error;
+        -:   53:}
+        -:   54:
+        -:   55:
+        -:   56:/* Esta funcion reserva en memoria espacio para una matriz */
+        2:   57:double**  CrearMatriz (int rows, int cols) {
+        2:   58:  int i=0;
+        2:   59:  double **m=NULL;
+        -:   60:
+        2:   61:  m=(double**)(calloc(rows,sizeof(double*)));
+        2:   62:  if (*m!=NULL) {
+    #####:   63:    perror("Chan!");
+        -:   64:  }
+     2006:   65:  while (i<=rows) {
+     2002:   66:    m[i]=(double*)(calloc(cols,sizeof(double)));
+     2002:   67:    if (m[i]==NULL) {
+    #####:   68:      perror("Chan!");
+        -:   69:    }
+     2002:   70:    i++;
+        -:   71:  }
+        2:   72:  CargarMatriz(m,rows,cols);
+        -:   73:
+        2:   74:  return m;
+        -:   75:}
+        -:   76:
+        -:   77:
+        -:   78:/* Esta funcion libera la memoria utilizada para una matriz */
+        2:   79:void BorrarMatriz (double **m, int rows) {
+        2:   80:  int i=1;
+     1004:   81:  while (i++<rows) {
+     1000:   82:    free(m[i]);
+     1000:   83:    i++;
+        -:   84:  }
+        2:   85:}
+        -:   86:
+        -:   87:
+        -:   88:/* Esta funcion carga los valores iniciales en una matriz */
+        4:   89:void CargarMatriz (double **m, int rows, int cols) {
+        4:   90:  int i=0, j=0;
+     4004:   91:  for (i=0; i<rows; i++) {
+  4004000:   92:    for (j=0; j<cols; j++) {
+  4000000:   93:      m[i][j]=1.0;
+        -:   94:    }
+        -:   95:  }
+        4:   96:}
+        -:   97:
+        -:   98:/* Esta funcion genera un numero al azar */
+    #####:   99:double   GenerarDato() {
+    #####:  100:  double numero = 0.0;
+    #####:  101:  srand(time(NULL));
+    #####:  102:  numero = rand() % 1000 - 500;
+    #####:  103:  return numero;
+        -:  104:}
+        -:  105:
+        -:  106:
+        -:  107:/* Esta funcion muestra en pantalla el contenido de una matriz */
+        -:  108:/* No conviene utilizarla con matrices grandes por la cantidad */
+        -:  109:/* de informacion que genera */
+    #####:  110:void MostrarMatriz (double **m, int rows, int cols, FILE *out) {
+    #####:  111:  int i=0, j=0;
+    #####:  112:  for (i=0; i<rows; i++) {
+    #####:  113:    for (j=0; j<cols; j++) {
+    #####:  114:      fprintf(out,"%6.2f  ",m[i][j]);
+        -:  115:    }
+    #####:  116:    fprintf(out,"\n");
+        -:  117:  }
+    #####:  118:}
+        -:  119:
+        -:  120:
+        1:  121:void SumarElementos (double **m, double **n, int rows, int cols) {
+        1:  122:  int i=0, j=0;
+     1001:  123:  for (i=0; i<cols; i++) {
+  1001000:  124:    for (j=0; j<rows; j++) {
+  1000000:  125:      m[j][i]= m[j][i] * n[j][i];
+        -:  126:    }
+        -:  127:  }
+        1:  128:}
+        -:  129:
+        -:  130:

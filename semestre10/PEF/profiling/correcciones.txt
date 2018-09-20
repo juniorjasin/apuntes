@@ -1,0 +1,183 @@
+
+ ______________
+|              |
+| Correcciones |
+|______________|
+
+
+1) Funcion SumarElementos:
+
+Observacion: La funcion mutiplica los elementos de la matriz
+Correccion: Cambiamos operacion por suma
+
+---------------------------------------------------------------------------
+
+
+2) Funcion CrearMatriz()
+
+Observacion: Esta funcion reserva memoria para una matriz, pero ademas llama a CargarMatriz(), lo que hace que
+             el codigo este acoplado, y luego en el main se llama primero CrearMatriz() y luego CargarMatriz(),
+             produciendo que se llame dos veces a CargarMatriz()
+
+Correccion: Elimino llamada a CargarMatriz(), para que la funcion haga una sola cosa y no este 
+            acoplada con CargarMatriz().
+
+---------------------------------------------------------------------------
+3) Funcion CargarMatriz()
+
+Observacion: La funcion debe cargar las matrices con numeros aleatorios, pero agrega el mismo valor en cada posicion
+Correccion: Llamo a la funcion GenerarDato() en cada asignacion.
+
+---------------------------------------------------------------------------
+
+4) Precision de datos
+
+Observacion: Las matrices son generadas de tipo double, por lo que tienen una precision de 15 digitos
+Correccion: Utilizo datos de tipo float.
+
+
+---------------------------------------------------------------------------
+
+5) Funcion GenerarDato()
+
+Observacion: La funcion GenerarDato() genera numeros entre [-500,500], pero la especificacion pide entre [-2000,2000].
+             Tambien, en cada vuelta se genera la semilla para crear el numero aleatorio, algo que debe hacerse una sola vez.
+Correccion: Cambio el rango en el cual se genera el numero aleatorio.
+            Muevo la semilla hacia el main, donde se ejecuta una vez.
+
+---------------------------------------------------------------------------
+
+5) Funcion BorrarMatriz()
+
+Observacion: La funcion comienza liberando memoria desde la posicion 1 en la matriz, pero deberia hacerlo
+             desde la posicion 0, porque todo array comienza en 0.
+Correccion: Inicio variable i=0.
+            Al final, tambien hace falta liberar la variable que apunta a la matriz
+
+
+----------------------------------------------------------------------------
+
+Para comparar el programa original con el programa aplicando las correcciones, ejecute ambos
+con matrices de 5000 filas y 5000 columnas.
+
+
+Trabajando con la herramienta gprof, analizamos el programa sin refactorear y vemos las llamadas 
+a funcion del programa:
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 63.44      0.48     0.48        1   482.15   482.15  SumarElementos
+ 37.01      0.76     0.28        4    70.31    70.31  CargarMatriz
+  0.00      0.76     0.00        2     0.00     0.00  BorrarMatriz
+  0.00      0.76     0.00        2     0.00    70.31  CrearMatriz
+
+
+Se observa que la funcion GenerarDato() jamas fue llamada, eso nos da la pauta de que
+es codigo muerto o que no se esta funcionando como deberia. Al ver el codigo, vemos que
+es una funcion que cumple un rol en el programa, pero que no se la esta utilizando.
+
+Tambien podemos observar que en cuatro ocaciones se llama a CargarMatriz, algo que es incorrecto.
+Porque tenemos dos matrices y se deberian llamar una vez por cada matriz.
+
+
+En el caso del programa con las correcciones:
+
+  %   cumulative   self              self     total           
+ time   seconds   seconds    calls  ms/call  ms/call  name    
+ 76.73      0.52     0.52        1   521.75   521.75  SumarElementos
+ 11.80      0.60     0.08 50000000     0.00     0.00  GenerarDato
+ 11.80      0.68     0.08        2    40.13    80.27  CargarMatriz
+  0.00      0.68     0.00        2     0.00     0.00  BorrarMatriz
+  0.00      0.68     0.00        2     0.00     0.00  CrearMatriz
+
+
+Ahora podemos ver que se llama a la funcion GenerarDato() 50000000 veces, algo
+que genera un aumento del tiempo total que demora el programa y vemos que se llama solo
+dos veces a la funcion CargarMatriz(), una por cada matriz.
+
+
+----------------------------------------------------------------------------
+
+Al utilizar el programa gcov, hacemos prubeas de covertura de codigo, para analizar
+que porcentaje de codigo se esta utilizando y que parte es codigo muerto. 
+
+Para el caso del programa sin correcciones, a simple vista vemos dos funciones
+que no son llamadas en ningun momento, GenerarDato() y MostrarMatriz().
+Sin analizar el codigo fuente, con solo mirar la salida por pantalla luego de ejecutar
+el programa, vemos que la funcion MostrarMatriz() no es llamada, luego en el codigo
+fuente se comprueba que es asi. 
+En el caso de la funcion GenerarDato(), sabemos por la especificacion que se deberia
+llamar esta funcion, pero no lo hace. Entonces detectamos un error sin ver el codigo fuente.
+
+Luego de realizadas las correcciones, vemos que solo la funcion MostrarMatriz() y 
+los casos de error quedan sin ejecutar. Lo cual nos asegura que la mayor parte del 
+codigo esta siendo utilizado, mas del 83%.
+
+
+-------------------------------------------------------------------------------
+
+Diferentes niveles de optimizacion 
+
+Codigo sin corregir:
+
+Optimizacion -O0, Matriz de 5000 x 5000
+
+real	0m1.112s
+user	0m1.016s
+sys	0m0.096s
+
+
+Optimizacion -O1, Matriz de 5000 x 5000
+
+real	0m1.109s
+user	0m0.985s
+sys	0m0.124s
+
+
+Optimizacion -O2, Matriz de 5000 x 5000
+real	0m1.065s
+user	0m0.929s
+sys	0m0.136s
+
+
+Optimizacion -O3, Matriz de 5000 x 5000
+real	0m1.060s
+user	0m0.948s
+sys	0m0.112s
+
+
+
+Codigo corregido:
+
+Optimizacion -O0, Matriz de 5000 x 5000
+
+real	0m1.122s
+user	0m1.002s
+sys	0m0.120s
+
+
+Optimizacion -O1, Matriz de 5000 x 5000
+
+real	0m1.113s
+user	0m0.965s
+sys	0m0.148s
+
+Optimizacion -O2, Matriz de 5000 x 5000
+
+real	0m1.148s
+user	0m1.008s
+sys	0m0.140s
+
+Optimizacion -O3, Matriz de 5000 x 5000
+
+real	0m1.050s
+user	0m0.922s
+sys	0m0.128s
+
+
+Los tiempos son mas altos en el codigo corregido, porque no hay codigo muerto.
+Pero en general los tiempos son aproximadamente los mismos. Lo que hay que tener 
+en cuenta durante estas optimizaciones, es que no varie la precision de las operaciones,
+pero analizando el codigo fuente vemos que no se realizan operaciones que requieran gran
+precision, por lo tanto, estos flags de optimizaciones no afectaran el resultado de este calculo.
+

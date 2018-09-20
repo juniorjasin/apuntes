@@ -1,0 +1,30 @@
+Inappropriate intimacy: La clase Juego accede directamente a los atributos g y resultados
+ de la clase Jugador.
+Ref: Cambiar el nombre del atributo g(poco descriptivo) por ganados. Cambiar los atributos 
+a private, y agregar sus getters y setters. Cambiar el acceso en Juego a los atributos
+por un getter o setter.
+
+Switch statements: En el método getResultado de la clase Jugador se utiliza una estructura
+condicional.
+Ref: Cambiar el algorítmo a uno más corto y claro, el cual es:
+return resultados[(int)(Math.random() * 3)];
+
+Temporary field: El atributo resultados en la clase Jugador no es representativo de la misma.
+Ref: Mover el atributo resultados y el método getResultado a la clase Juego. Eliminar el 
+getter de resultados de la clase Jugador. Cambiar en el método main de la clase Juego que
+se obtengan los resultados de la misma clase.
+
+Switch statements: En la clase Juego, método main, se utiliza una estructura condicional grande
+para determinar cuál de los jugadores ganó.
+Ref: Crear una superclase abstracta Jugada y tres clases hijas Piedra, Papel y Tijera. Agregar
+un método abstract contra(Jugada jugada) y definirlo en cada una de las clases hijas, 
+el cuál retorna 1 si ganás, -1 si perdés y 0 si es empate.
+Agregar el método toString a las clases hijas que retorna el nombre de la jugada.
+Cambiar el atributo resultados de la clase Juego para que contenga tres objetos de tipo
+Piedra, Papel y Tijera. 
+Cambiar el método getResultado() de la clase Juego para que retorne una Jugada.
+Cambiar las variables temporales selJ1 y selJ2 por el tipo Jugada.
+Cambiar la lógica de la estructura condicional en Juego.
+
+
+

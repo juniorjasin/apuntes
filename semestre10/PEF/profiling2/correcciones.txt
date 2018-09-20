@@ -1,0 +1,80 @@
+# Libera memoria correctamente
+
+Funcion BorrarMatriz() 
+
+Observacion: La funcion comienza liberando memoria desde la posicion 1 en la matriz, pero deberia hacerlo
+             desde la posicion 0, porque todo array comienza en 0.
+Correccion: Inicio variable i=0.
+            Al final, tambien hace falta liberar la variable que apunta a la matriz
+
+
+# Es eficiente en cuanto a tiempo de ejecucion y acceso a memoria.
+
+En la funcion CargarMatriz() y MostrarMatriz(), se observa que se recorre la matriz analizando un elemento de cada columna por vuelta.
+Esto genera ineficiencias en tiempo de ejecucion y acceso a la memoria, porque el lenguaje C al ser row-major,
+los elementos de la misma fila se almacenan consecutivos en la memoria RAM unos a otros. Entonces al recorrer la matriz
+de manera que en cada ciclo se accede a elementos no contiguos, si la matriz tiene un tamaño considerable, se puede deberia
+que los elementos de entre cada ciclo no esten disponibles en el buffer del microprocesador y los tenga que pedir en la memoria
+cache reiteradas veces. Lo que ocaciona perdidas de tiempo por las demoras en pedir elementos que no se encuentran en
+la memoria, por lo que tampoco se aprovechan los accesos a memoria de manera eficiente. 
+
+Para ilustrar esta diferencia, ejecute 2 programas, aprovechando que C es row-major
+y otro pensando si fuera column-major.
+
+
+Matriz de 5000x5000
+
+column-major:
+
+$ time ./mal 5000 5000
+
+real	0m1.582s
+user	0m1.438s
+sys	0m0.144s
+
+row-major:
+
+$ time ./bien 5000 5000
+
+real	0m1.130s
+user	0m0.994s
+sys	0m0.136s
+
+
+Matriz 8000x8000
+
+
+column-major:
+
+$ time ./mal 8000 8000
+
+real	0m4.230s
+user	0m3.895s
+sys	0m0.336s
+
+row-major:
+
+$ time ./bien 8000 8000
+
+real	0m3.050s
+user	0m2.725s
+sys	0m0.321s
+
+
+column-major:
+$ time ./mal 15000 15000
+
+real	0m21.694s
+user	0m20.575s
+sys	0m1.116s
+
+
+row-major:
+$ time ./bien 15000 15000
+
+real	0m16.884s
+user	0m15.880s
+sys	0m1.004s
+
+
+Como vemos en todos los casos los tiempos de ejecucion son mayores cuando no aprovechamos las caracteristicas del lenguaje. Para el caso de matrices muy grandes esto puede ser un gran problema, pero de facil solucion en estos casos. Debemos conocer como funciona por debajo el lenguaje que utilizamos.

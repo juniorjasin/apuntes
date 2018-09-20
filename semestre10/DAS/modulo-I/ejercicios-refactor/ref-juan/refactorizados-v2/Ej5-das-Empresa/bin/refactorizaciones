@@ -1,0 +1,32 @@
+Switch statements: En la clase Depto, en el método getJerarquiaCargo se utiliza una estructura
+condicional para retornar el número de jerarquía cargo.
+Ref: Utilizar polimorfismo, para ello crear una superclase Cargo y sus clases hijas 
+gerente, analista, vendedor, contable y operario. Crear los métodos en la superclase Cargo
+getJerarquíaCargo y getNombreCargo y redefinirlo en las clases hijas que devuelvan un valor 
+distinto a su padre. Quitar el enum Cargo de la clase Depto y el método getJeraquíaCargo. 
+En el constructor de Empleado quitar el parámetro jerarquiaCargo y borrar el atributo 
+ya que lo obtiene a través del objeto Cargo que recibe. En el método toString de Empleado
+obtener el nombre del cargo a través de getNombreCargo. En la clase EmpleadoComparator en el
+método compare cambiar la forma de obtener la jerarquía del cargo por .getCargo().getJeraquiaCargo()
+
+Divergent change: Dentro de la clase Depto están como inner class Empleado y EmpleadoComparator. 
+La clase estará cambiando constantemente por motivos no muy relacionados
+entre sí cada vez que se tenga que hacer un cambio en alguna de las clases.
+Ref: Extraer las clases Empleado y EmpleadoComparator en distintos archivos. Cambiar el acceso
+directo al atributo privado nroLegajo(antes podía porque era una inner class) de Empleado por
+su getter. Crear un atributo Depto dentro de Empleado(ya que el departamento debe ser único por
+empleado) y recibir un parámetro Depto en el constructor. Agregar getters y setters de del
+atributo departamento y cambiar el getNroLegajo y getJerarquíaCargo por la llamada a
+esos métodos del atributo departamento de la clase.
+
+Data clumps: El método addEmp de la clase Depto recibe un conjunto de argumentos que definen un Empleado.
+Ref: Recibir un objeto de tipo Empleado.
+
+Temporary field: En la clase Depto el atributo emp no representa a la clase ya que el
+departamento tiene que ser único por empleado.
+Ref: Crear una nueva clase Singleton Empresa que se encargue de manejar los empleados. 
+Mover los métodos addEmp, removeEmp, getNroLegajo a Empresa. Cambiar en la clase Empleado
+en el constructor, la obtención del nroLegajo a través de Empresa.getInstance().getNroLegajo(). 
+Cambiar el toString para que no imprima los empleados. Agregar el método toString 
+en Empresa que muestre los empleados.
+

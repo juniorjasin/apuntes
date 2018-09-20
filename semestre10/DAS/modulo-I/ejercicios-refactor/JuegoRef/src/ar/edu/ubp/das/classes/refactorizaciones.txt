@@ -1,0 +1,58 @@
+clase Jugador
+
+Bad smell: Switch statements
+
+Motivacion: Existe un switch statement que se puede reemplazar por una logica mas simple y clara
+
+Refactorizacion:	- Sustitucion de algoritmo, se elimina el switch
+					- Se retorna resultados[i], siendo i el nro aleatorio generado
+
+
+---------------------------------------------------------------------------
+
+Motivacion: aniadir mayor claridad al codigo
+
+Refactorizacion:	-  Cambio nombre de la variable g, por ganados
+ 
+
+---------------------------------------------------------------------------
+
+clase Jugador
+
+Bad smell: temporary field ("podria ser envidia de caracteristicas")
+
+Motivacion: getResultado no conforma parte del jugador, sino del juego.
+			No genera valor a la clase Jugador.
+			
+
+Refactorizacion:	- Muevo array
+					- Muevo metodo
+ 
+ 
+---------------------------------------------------------------------------
+
+clase Jugador
+
+Bad smell: obsesion primitiva
+
+Motivacion: las jugadas estaban manejadas como string
+			
+Refactorizacion:	- Creo superclase Jugada
+					- Creo subclases, piedra, papel, tijera
+ 
+
+---------------------------------------------------------------------------
+
+clase Juego
+
+Bad smell: Switch statements
+
+Motivacion: se hacen todas las comparaciones posibles entre todas las jugadas, quedando muchos else if
+			
+Refactorizacion:	- Creo metodo compareTo en cada clase Piedra, Tijera, Papel
+					- Se invocan estos metodos con reflexion, desde el objeto del Jugador1
+					  y se pasa por parametro el objeto del Jugador2
+					- Cada metodo responde 1,0,-1, segun si gano, empato o perdio respectivamente.
+					
+
+ 

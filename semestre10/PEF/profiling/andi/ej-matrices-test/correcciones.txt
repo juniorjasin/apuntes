@@ -1,0 +1,20 @@
+1) el programa no esta sumando matrices, las esta multiplicando. Esto se puede observar en la funcion SumarElementos.
+Para corregir esto debemos cambiar la operacion por una suma.
+
+2) la funcion cargar matriz no esta cargando numeros aleatorios en las matrices, sino que esta cargando el valor 1.0
+en todas sus casillas. Lo que debemos hacer es que utilice la funcion GenerarDato y el valor de esta setearlo a cada 
+casilla de las matrices.
+
+3) La funcion GenerarDato tiene dos errores. Primero no esta calculando valores entre -2000 y 2000 con la funcion rand(). Y 
+segundo que la semilla al estar dentro de la funcion se calcula cada vez que se ejecuta, esta debe sacarse de la funcion y colocare
+al principio del main, por ejemplo, para que siempre genere valores distintos.
+
+4) Los datos que se cargan en la matriz, no tienen precision de 7 digitos. Esto se relaciona con el tipo de dato
+que se utiliza, en este caso los datos son almacenados como double, para que tengan una precision de 7 digitos debemos
+almacear los mismos como float.
+
+5) El programa esta cargando dos veces la matriz. Primero cuando crea la matriz, es decir, reserva el espacio en memoria
+y a continuacion llama a la funcion CargarMatriz. Luego de esto, vuelve a cargar ambas matrices llamando en el main a la funcion
+CargarMatriz para la matriz original y la auxiliar. Esto es innecesario y genera procesamiento innecesario,
+ por lo que borraremos en la funcion CrearMatriz la llamada a la funcion CargarMatriz, de esta forma, 
+ se cargaran en el main cuando se llama a CargarMatriz.

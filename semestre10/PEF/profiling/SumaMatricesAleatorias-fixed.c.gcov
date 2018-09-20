@@ -1,0 +1,169 @@
+        -:    0:Source:SumaMatricesAleatorias-fixed.c
+        -:    0:Graph:SumaMatricesAleatorias-fixed.gcno
+        -:    0:Data:SumaMatricesAleatorias-fixed.gcda
+        -:    0:Runs:1
+        -:    0:Programs:1
+        -:    1:#include <stdio.h>
+        -:    2:#include <stdlib.h>
+        -:    3:#include <time.h>
+        -:    4:#include <sys/time.h>
+        -:    5:
+        -:    6:double** CrearMatriz   (int rows, int cols);
+        -:    7:void     BorrarMatriz  (double **m, int rows);
+        -:    8:void     CargarMatriz  (double **m, int rows, int cols);
+        -:    9:void     MostrarMatriz (double **m, int rows, int cols, FILE *out);
+        -:   10:
+        -:   11:double   GenerarDato();
+        -:   12:void     SumarElementos (double **m, double **n, int rows, int cols);
+        -:   13:
+        -:   14:struct timeval start, end;
+        -:   15:
+        1:   16:int main (int argc, char *argv[]) {
+        -:   17:
+        1:   18:  gettimeofday(&start, NULL);
+        1:   19:  time_t nowtime = start.tv_sec;
+        1:   20:  struct tm *nowtm = localtime(&nowtime);
+        -:   21:  char buf1[1024]; // construct a string without microseconds
+        1:   22:  strftime(buf1, 1024, "%Y-%m-%d %H:%M:%S", nowtm);
+        -:   23:  char buf2[1024]; // append microseconds to end of string
+        1:   24:  snprintf(buf2, 1024, "%s.%06ld", buf1, start.tv_usec);
+        -:   25:
+        1:   26:  printf("%s\n", buf2);
+        -:   27:
+        1:   28:  int error=0, matrixRows=0, matrixCols=0, maxIters=0;
+        1:   29:  double **matrizOriginal=NULL, **matrizAuxiliar=NULL, maxDiferencia=0.0;
+        1:   30:  srand(time(NULL));
+        -:   31:
+        -:   32:  clock_t t;
+        1:   33:  t = clock();
+        -:   34:  
+        -:   35:  
+        -:   36:  
+        -:   37:  /* Verificacion de la cantidad de argumentos */
+        1:   38:  if (argc<2) {
+    #####:   39:    fprintf(stderr,"Utilizar:\n\t%s filas columnas\n",argv[0]);
+    #####:   40:    error=1;
+        -:   41:  }
+        -:   42:  else {
+        -:   43:    /* Se toma la cantidad de elementos de la matriz (cuadrada) */
+        1:   44:    matrixRows=atoi(argv[1]);
+        1:   45:    matrixCols= argc==3 ? atoi(argv[2]) : matrixRows;
+        -:   46:    /* Se reserva la memoria para la matriz principal */
+        1:   47:    matrizOriginal=CrearMatriz(matrixRows,matrixCols);
+        1:   48:    if (matrizOriginal==NULL) {
+    #####:   49:      error=1;
+        -:   50:    }
+        -:   51:  }
+        -:   52:  
+        1:   53:  if (!error) {
+        -:   54:    /* Se reserva la memoria para la matriz auxiliar */
+        1:   55:    matrizAuxiliar=CrearMatriz(matrixRows,matrixCols);
+        1:   56:    if (matrizAuxiliar==NULL) {
+    #####:   57:      error=1;
+        -:   58:    }
+        -:   59:  }
+        -:   60:
+        1:   61:  if (!error) {
+        -:   62:    /* Se inicializan ambas matrices con los mismos valores */
+        1:   63:    CargarMatriz(matrizOriginal,matrixRows,matrixCols);
+        1:   64:    CargarMatriz(matrizAuxiliar,matrixRows,matrixCols);
+        -:   65:
+        1:   66:    SumarElementos(matrizOriginal,matrizAuxiliar,matrixRows,matrixCols);
+        -:   67:  }
+        -:   68:
+        -:   69:
+        -:   70:  /* Se libera la memoria reservada para ambas matrices */
+        1:   71:  BorrarMatriz(matrizOriginal,matrixRows);
+        1:   72:  BorrarMatriz(matrizAuxiliar,matrixRows);
+        -:   73:
+        1:   74:  gettimeofday(&end, NULL);  
+        1:   75:  time_t nowtime2 = end.tv_sec;
+        1:   76:  struct tm *nowtm2 = localtime(&nowtime2);
+        -:   77:  char buf01[1024]; // construct a string without microseconds
+        1:   78:  strftime(buf01, 1024, "%Y-%m-%d %H:%M:%S", nowtm2);
+        -:   79:  char buf02[1024]; // append microseconds to end of string
+        1:   80:  snprintf(buf02, 1024, "%s.%06ld", buf01, end.tv_usec);
+        -:   81:
+        1:   82:  printf("%s\n", buf02);
+        -:   83:
+        1:   84:  t = clock() - t;
+        1:   85:  double time_taken = ((double)t)/CLOCKS_PER_SEC; // in seconds
+        1:   86:  printf("Tomo %f segundos en ejecutar la suma de matrices \n", time_taken);
+        -:   87:
+        1:   88:  return error;
+        -:   89:}
+        -:   90:
+        -:   91:
+        -:   92:/* Esta funcion reserva en memoria espacio para una matriz */
+        2:   93:double**  CrearMatriz (int rows, int cols) {
+        2:   94:  int i=0;
+        2:   95:  double **m=NULL;
+        -:   96:
+        2:   97:  m=(double**)(calloc(rows,sizeof(double*)));
+        2:   98:  if (*m!=NULL) {
+    #####:   99:    perror("Chan!");
+        -:  100:  }
+     2006:  101:  while (i<=rows) {
+     2002:  102:    m[i]=(double*)(calloc(cols,sizeof(double)));
+     2002:  103:    if (m[i]==NULL) {
+    #####:  104:      perror("Chan!");
+        -:  105:    }
+     2002:  106:    i++;
+        -:  107:  }
+        2:  108:  return m;
+        -:  109:}
+        -:  110:
+        -:  111:
+        -:  112:/* Esta funcion libera la memoria utilizada para una matriz */
+        2:  113:void BorrarMatriz (double **m, int rows) {
+        2:  114:  int i=0;
+     1004:  115:  while (i++<rows) {
+     1000:  116:    free(m[i]);
+     1000:  117:    i++;
+        -:  118:  }
+        2:  119:  free(m);
+        2:  120:}
+        -:  121:
+        -:  122:
+        -:  123:/* Esta funcion carga los valores iniciales en una matriz */
+        2:  124:void CargarMatriz (double **m, int rows, int cols) {
+        2:  125:  int i=0, j=0;
+     2002:  126:  for (i=0; i<rows; i++) {
+  2002000:  127:    for (j=0; j<cols; j++) {
+  2000000:  128:      m[i][j]= GenerarDato();
+        -:  129:    }
+        -:  130:  }
+        2:  131:}
+        -:  132:
+        -:  133:/* Esta funcion genera un numero al azar */
+  2000000:  134:double   GenerarDato() {
+  2000000:  135:  double numero = 0.0;
+  2000000:  136:  numero = (rand() % 4000) -2000;
+  2000000:  137:  return numero;
+        -:  138:}
+        -:  139:
+        -:  140:
+        -:  141:/* Esta funcion muestra en pantalla el contenido de una matriz */
+        -:  142:/* No conviene utilizarla con matrices grandes por la cantidad */
+        -:  143:/* de informacion que genera */
+    #####:  144:void MostrarMatriz (double **m, int rows, int cols, FILE *out) {
+    #####:  145:  int i=0, j=0;
+    #####:  146:  for (i=0; i<rows; i++) {
+    #####:  147:    for (j=0; j<cols; j++) {
+    #####:  148:      fprintf(out,"%6.2f  ",m[i][j]);
+        -:  149:    }
+    #####:  150:    fprintf(out,"\n");
+        -:  151:  }
+    #####:  152:}
+        -:  153:
+        -:  154:
+        1:  155:void SumarElementos (double **m, double **n, int rows, int cols) {
+        1:  156:  int i=0, j=0;
+     1001:  157:  for (i=0; i<cols; i++) {
+  1001000:  158:    for (j=0; j<rows; j++) {
+  1000000:  159:      m[j][i]= m[j][i] + n[j][i];
+        -:  160:    }
+        -:  161:  }
+        1:  162:}
+        -:  163:
+        -:  164:

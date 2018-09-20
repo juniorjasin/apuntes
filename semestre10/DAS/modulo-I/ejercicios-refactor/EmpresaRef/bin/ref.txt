@@ -1,0 +1,48 @@
+clase Depto
+
+Bad smell: Cambio divergente
+
+Motivacion: La clase Depto contiene a la clase Empleado, y cada vez que se hagan cambios en Empleado
+			se va a modificar la clase Depto. 
+
+Refactorizacion:	- Extraer clase Empleado a un nuevo archivo 
+	
+
+----------------------------------------------------------------------------------------------
+
+clase Depto
+
+Bad smell: Intimidad inadecuada
+
+Motivacion: En el metodo removeEmp se accede al numero de legajo sin un metodo accesor 
+
+Refactorizacion:	- crear metodo accesor para el atributo nroLegajo de la clase Empleado.
+	
+
+----------------------------------------------------------------------------------------------
+
+clase Depto
+
+Bad smell: Large Class
+
+Motivacion: La clase Depto intenta resolver todos los problemas de una empresa, y no 
+			puede satisfacer la consideracion de que cada empleado trabaje en un solo cargo con un unico puesto 
+			y tenga un unico legajo.  
+
+Refactorizacion:	- Crear clase Empresa
+					- Hacerla singleton para que solo pueda haber un instancia Empresa
+					- Agregar array de empleados y los metodos para agregar o quitar empleado de la empresa
+	
+
+----------------------------------------------------------------------------------------------
+
+clase Depto
+
+Bad smell: Switch statement
+
+Motivacion: Para determinar el Cargo, se tiene que hacer un switch y preguntando el tipo.  
+
+Refactorizacion:	- Crear jerarquia de clases de cargos
+	
+
+----------------------------------------------------------------------------------------------

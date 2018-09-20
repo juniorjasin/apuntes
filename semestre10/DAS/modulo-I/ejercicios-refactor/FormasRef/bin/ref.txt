@@ -1,0 +1,28 @@
+clase Forma
+
+Bad smell: Legado rechazado
+
+Motivacion: Los atributos heredados de la clase Forma base y altura, no representan a todas las entidades.
+			La clase Triangulo no utiliza estos atributos, la clase Cuadrado tampoco y si existiera otra clase
+			como Circulo, Poligono, etc. tampoco utilizarian estos atributos. 
+
+Refactorizacion:	- Remover atributos de la clase base
+					- Remover metodos respectivos a atributos de la clase base
+					- Remover atributos en las subclases
+					- Remover metodos en las subclases
+					- Comprobar funcionamiento
+
+----------------------------------------------------------------------------------------------
+
+clase Forma
+
+Bad smell: Switch statement
+
+Motivacion: En la clase forma hay 3 condiciones para determinar que tipo de forma es y en base a eso
+			saber como mostrar por consola el objeto, esto conduce a que cada forma nueva que se agregue
+			se tenga que aniadir otra condicion
+
+Refactorizacion:	- Se hace abstractor al metodo toString()
+					- Se redefine para cada forma segun corresponda
+
+----------------------------------------------------------------------------------------------

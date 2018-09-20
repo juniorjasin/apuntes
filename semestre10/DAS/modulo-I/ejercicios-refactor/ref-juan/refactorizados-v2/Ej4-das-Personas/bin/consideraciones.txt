@@ -1,0 +1,5 @@
+-	El identificador de la persona es único.
+-	El legajo es único por rol (alumno, docente, personal).
+-	Una persona puede ser alumno, docente y/o personal.
+-	El nro. de documento es un dato de la persona.
+-	Un docente puede dictar clases en varias carreras siempre cumpliendo el mismo cargo.

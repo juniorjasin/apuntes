@@ -1,0 +1,13 @@
+Switch statements: La clase forma utiliza una estructura de agrupación condicional para
+determinar la lógica del método toString.
+Ref: Mover el método a cada hijo de la clase Forma y cada uno define su comportamiento.
+
+???: Los atributos de la clase forma base y altura, y los métodos getters y setter de los mismos no representan
+a todas las formas.
+Ref: Quitar los atributos base y altura y sus getter y setter de Punto, quitar los getter y
+setter de las clases hijas. Modificar en Rectangulo que tenga los atributos lado1 y lado2, sus getter y setter,
+modificar los métodos que usaban getBase y getAltura. En Triangulo agregar los atributos base
+y altura.
+
+Podría también agregarse el toString() como método largo  y separar.
+
