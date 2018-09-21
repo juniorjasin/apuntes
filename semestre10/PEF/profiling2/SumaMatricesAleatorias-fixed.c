@@ -98,7 +98,7 @@ double**  CrearMatriz (int rows, int cols) {
   if (*m!=NULL) {
     perror("Chan!");
   }
-  while (i<=rows) {
+  while (i<rows) {
     m[i]=(double*)(calloc(cols,sizeof(double)));
     if (m[i]==NULL) {
       perror("Chan!");
@@ -112,7 +112,7 @@ double**  CrearMatriz (int rows, int cols) {
 /* Esta funcion libera la memoria utilizada para una matriz */
 void BorrarMatriz (double **m, int rows) {
   int i=0;
-  while (i++<rows) {
+  while (i<rows) {
     free(m[i]);
     i++;
   }
